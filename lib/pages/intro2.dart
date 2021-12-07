@@ -121,6 +121,7 @@ class _intro2state extends State<intro2> {
               setState(() {
                 widget.newuser.SetELSS = ELSS;
                 widget.newuser.SetPPF = PPF;
+                widget.newuser.SetLifeInsurance = lifeinsurance;
                 widget.newuser.SetMedicalInsurance = medicalInsurance;
                 widget.newuser.SetNationalPensionScheme = nationalPensionScheme;
                 widget.newuser.SetTotalDonations = totalDonations;
@@ -136,6 +137,7 @@ class _intro2state extends State<intro2> {
           setState(() {
             widget.newuser.SetELSS = ELSS;
             widget.newuser.SetPPF = PPF;
+            widget.newuser.SetLifeInsurance = lifeinsurance;
             widget.newuser.SetMedicalInsurance = medicalInsurance;
             widget.newuser.SetNationalPensionScheme = nationalPensionScheme;
             widget.newuser.SetTotalDonations = totalDonations;
