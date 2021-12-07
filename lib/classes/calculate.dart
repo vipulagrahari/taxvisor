@@ -1,6 +1,6 @@
 dynamic calculateTaxAsPerOldRules(int income, int deductions) {
-dynamic totalTax = 0;
-dynamic taxableIncome = income - deductions;
+  dynamic totalTax = 0;
+  dynamic taxableIncome = income - deductions;
 
   while (taxableIncome > 250000) {
     if (taxableIncome > 1000000) {
@@ -19,8 +19,8 @@ dynamic taxableIncome = income - deductions;
       totalTax += tax;
     }
   }
-  int x = totalTax;
-  return x;
+  dynamic x = totalTax;
+  return x.round();
 }
 
 dynamic calculateTaxAsPerNewRules(int income) {
@@ -58,6 +58,6 @@ dynamic calculateTaxAsPerNewRules(int income) {
       totalTax += tax;
     }
   }
-  int x = totalTax;
-  return x;
+  dynamic x = totalTax;
+  return x.round();
 }

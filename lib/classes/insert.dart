@@ -2,6 +2,7 @@
 
 class User {
   // Assesement Year
+  User();
   List _AssessmentYear = [0, 0];
 
   String _Name = "";
@@ -15,7 +16,7 @@ class User {
   //Residential status
   String _ResidentialStatus = "";
 
-  // Income intiables
+  // Income variables
   int _NetSalaryIncome = 0;
   int _HouseRentAllowance = 0;
   int _IncomeFromBankInterest = 0;
@@ -23,7 +24,7 @@ class User {
   int _IncomeFromOtherSources = 0;
   int _CapitalGains = 0;
 
-  // Deduction intiables values per annum
+  // Deduction variables values per annum
   int _ELSS = 0;
   int _PPF = 0;
   int _LifeInsurance = 0;
@@ -32,7 +33,7 @@ class User {
   int _TotalDonations = 0;
 
   // Loans
-  int _HomeLoan = 0; //Emi for current year
+  var _HomeLoan = 0; //Emi for current year
 
   // Getters and Setters
 
@@ -66,90 +67,113 @@ class User {
 
   String get GetResidentialStatus => _ResidentialStatus;
 
-  //for Income intiables
+  //for Income variables
 
-  set SetNetSalaryIncome(int a) {
+  set SetNetSalaryIncome(var a) {
     _NetSalaryIncome = a;
   }
 
   dynamic get GetNetSalaryIncome => _NetSalaryIncome;
 
-  set SetHouseRentAllowance(int a) {
+  set SetHouseRentAllowance(var a) {
     _HouseRentAllowance = a;
   }
 
   dynamic get GetHouseRentAllowance => _HouseRentAllowance;
 
-  set SetIncomeFromBankInterest(int a) {
+  set SetIncomeFromBankInterest(var a) {
     _IncomeFromBankInterest = a;
   }
 
   dynamic get GetIncomeFromBankInterest => _IncomeFromBankInterest;
 
-  set SetIncomeFromRent(int a) {
+  set SetIncomeFromRent(var a) {
     _IncomeFromRent = a;
   }
 
   dynamic get GetIncomeFromRent => _IncomeFromRent;
 
-  set SetIncomeFromOtherSources(int a) {
+  set SetIncomeFromOtherSources(var a) {
     _IncomeFromOtherSources = a;
   }
 
   dynamic get GetIncomeFromOtherSources => _IncomeFromOtherSources;
 
-  set SetCapitalGains(int a) {
+  set SetCapitalGains(var a) {
     _CapitalGains = a;
   }
 
   dynamic get GetCapitalGains => _CapitalGains;
 
-  //for deduction intiables
+  //for deduction variables
 
-  set SetELSS(int a) {
+  set SetELSS(var a) {
     _ELSS = a;
   }
 
   dynamic get GetELSS => _ELSS;
 
-  set SetPPF(int a) {
+  set SetPPF(var a) {
     _PPF = a;
   }
 
   dynamic get GetPPF => _PPF;
 
-  set SetLifeInsurance(int a) {
+  set SetLifeInsurance(var a) {
     _LifeInsurance = a;
   }
 
   dynamic get GetLifeInsurance => _LifeInsurance;
 
-  set SetMedicalInsurance(int a) {
+  set SetMedicalInsurance(var a) {
     _MedicalInsurance = a;
   }
 
   dynamic get GetMedicalInsurance => _MedicalInsurance;
 
-  set SetNationalPensionScheme(int a) {
+  set SetNationalPensionScheme(var a) {
     _NationalPensionScheme = a;
   }
 
   dynamic get GetNationalPensionScheme => _NationalPensionScheme;
 
-  set SetTotalDonations(int a) {
+  set SetTotalDonations(var a) {
     _TotalDonations = a;
   }
 
   dynamic get GetTotalDonations => _TotalDonations;
 
-  set SetHomeLoan(int a) {
+  set SetHomeLoan(var a) {
     _HomeLoan = a;
   }
 
   dynamic get GetHomeLoan => _HomeLoan;
 
+  dynamic getPossibleDeductions() {
+    int res = 0;
+    if (_ELSS == 0) {
+      res++;
+    }
+    if (_PPF == 0) {
+      res++;
+    }
+    if (_LifeInsurance == 0) {
+      res++;
+    }
+    if (_MedicalInsurance == 0) {
+      res++;
+    }
+    if (_NationalPensionScheme == 0) {
+      res++;
+    }
+    if (_TotalDonations == 0) {
+      res++;
+    }
+    return res;
+  }
+
   dynamic CalculateIncome() {
-    int result = _NetSalaryIncome +
+    var result = _NetSalaryIncome +
         _HouseRentAllowance +
         _IncomeFromBankInterest +
         _IncomeFromOtherSources +
@@ -167,8 +191,3 @@ class User {
     return result;
   }
 }
-///age>80
-///60>age>80
-///age<6
-///
-///

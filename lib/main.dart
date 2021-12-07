@@ -5,14 +5,16 @@ import 'package:taxvisor/widgets/rt.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:taxvisor/pages/intro1.dart';
 import 'package:taxvisor/widgets/selector.dart';
-
+import 'package:taxvisor/classes/insert.dart';
 //White hex FBFAF5
 
 void main() {
+  // final User newuser = User();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  // final newuser = User();
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
@@ -26,23 +28,16 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.indigo,
       ),
-      home: const MyHomePage(title: 'Welcome!'),
+      home: MyHomePage(title: 'Welcome!', newuser: User()),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title, required this.newuser})
+      : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
+  final User newuser;
   final String title;
 
   @override
@@ -50,19 +45,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String name = 'nothing yet';
+
+  final nameController = TextEditingController();
+
+  namecallback(newinput) {
+    name = newinput;
+  }
+
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       backgroundColor: const Color(0xffFFFF00),
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title,
             style: const TextStyle(color: Color(0xffFFFFFF))),
         centerTitle: true,
@@ -73,7 +68,22 @@ class _MyHomePageState extends State<MyHomePage> {
           rt("HI!"),
           typer(
               'Our Job is to get to know you at first, so can you fill these sections please?'),
-          inputbox('Enter name', 'Name cannot be Empty'),
+          inputbox(
+            a: 'Enter name',
+            b: 'Name cannot be Empty',
+            keyboardType: TextInputType.name,
+            userCallback: namecallback,
+            returnnum: false,
+            myController: nameController,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                widget.newuser.SetName = name;
+              });
+            },
+            child: const Text("press"),
+          ),
           const GFAccordion(
             title: 'Tip',
             titlePadding: EdgeInsets.all(10),
@@ -99,13 +109,19 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          setState(() {
+            // nameController.dispose();
+            widget.newuser.SetName = name;
+          });
           Navigator.push<void>(
               context,
               MaterialPageRoute<void>(
-                  builder: (BuildContext context) => const intro1()));
+                  builder: (BuildContext context) => intro1(
+                        newuser: widget.newuser,
+                      )));
         },
         backgroundColor: Colors.black,
-        tooltip: 'Increment',
+        tooltip: 'Next',
         child: const Icon(Icons.arrow_forward_ios),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
