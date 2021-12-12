@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:taxvisor/widgets/inputbox.dart';
 import 'package:taxvisor/widgets/typer.dart';
@@ -6,26 +8,27 @@ import 'package:getwidget/getwidget.dart';
 import 'package:taxvisor/pages/intro1.dart';
 import 'package:taxvisor/widgets/selector.dart';
 import 'package:taxvisor/classes/insert.dart';
+//White hex FBFAF5
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class homepage extends StatelessWidget {
+  // final newuser = User();
+  const homepage({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Homepage',
       theme: ThemeData(
         // This is the theme of the application.
 
         primarySwatch: Colors.indigo,
       ),
-      home: MyHomePage(title: 'Welcome!', newuser: User()),
+      home: MyHomePage(
+        title: 'Welcome!',
+        newuser: User(),
+      ),
     );
   }
 }
@@ -79,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 widget.newuser.SetName = name;
               });
             },
-            child: const Text("Save"),
+            child: const Text("press"),
           ),
           const GFAccordion(
             title: 'Tip',
@@ -96,12 +99,9 @@ class _MyHomePageState extends State<MyHomePage> {
               'none'
             ],
           ),
-          const selector(userVal: [
-            'Individual',
-            'Small Company',
-            'Large Industry',
-            'none'
-          ])
+          const selector(
+            userVal: ['Individual', 'Small Company', 'Large Industry', 'none'],
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -111,13 +111,11 @@ class _MyHomePageState extends State<MyHomePage> {
             widget.newuser.SetName = name;
           });
           Navigator.push<void>(
-            context,
-            MaterialPageRoute<void>(
-              builder: (BuildContext context) => intro1(
-                newuser: widget.newuser,
-              ),
-            ),
-          );
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) => intro1(
+                        newuser: widget.newuser,
+                      )));
         },
         backgroundColor: Colors.black,
         tooltip: 'Next',

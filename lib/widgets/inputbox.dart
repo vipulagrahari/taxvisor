@@ -37,38 +37,40 @@ class _inputboxstate extends State<inputbox> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(10),
-        child: TextFormField(
-          autofocus: false,
-          controller: widget.myController,
-          keyboardType: widget.keyboardType,
-          decoration: InputDecoration(
-              filled: true,
-              labelText: widget.a,
-              fillColor: Colors.white,
-              prefixIcon: const Icon(Icons.person),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(25.0),
-                borderSide: const BorderSide(),
-              ),
-              suffixIcon: IconButton(
-                  icon: const Icon(Icons.circle),
-                  onPressed: widget.userCallback(widget.returnnum
-                      ? (widget.myController.text).isEmpty
-                          ? 0
-                          : int.parse(widget.myController.text)
-                      : widget.myController.text))),
-          validator: (val) {
-            if (val!.isEmpty) {
-              return widget.b;
-            } else {
-              return null;
-            }
-          },
-          style: GoogleFonts.quicksand(
-              textStyle: const TextStyle(
+      padding: const EdgeInsets.all(10),
+      child: TextFormField(
+        autofocus: false,
+        controller: widget.myController,
+        keyboardType: widget.keyboardType,
+        decoration: InputDecoration(
+            filled: true,
+            labelText: widget.a,
+            fillColor: Colors.white,
+            prefixIcon: const Icon(Icons.person),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(25.0),
+              borderSide: const BorderSide(),
+            ),
+            suffixIcon: IconButton(
+                icon: const Icon(Icons.circle),
+                onPressed: widget.userCallback(widget.returnnum
+                    ? (widget.myController.text).isEmpty
+                        ? 0
+                        : int.parse(widget.myController.text)
+                    : widget.myController.text))),
+        validator: (val) {
+          if (val!.isEmpty) {
+            return widget.b;
+          } else {
+            return null;
+          }
+        },
+        style: GoogleFonts.quicksand(
+          textStyle: const TextStyle(
             color: Colors.black,
-          )),
-        ));
+          ),
+        ),
+      ),
+    );
   }
 }

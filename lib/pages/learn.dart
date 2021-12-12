@@ -4,20 +4,41 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:taxvisor/pages/learnmodule.dart';
 
 class learn extends StatelessWidget {
-  const learn({Key? key}) : super(key: key);
+  learn({Key? key}) : super(key: key);
+
+  final headerList = [
+    "Header 1",
+    "Header 2",
+    "Header 3",
+    "Header 4",
+    "Header 5",
+    "Header 6",
+    "Header 7",
+    "Header 8"
+  ];
+  final colorList = [
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xffFFFF00),
-        appBar: AppBar(
-          title:
-              const Text("Modules", style: TextStyle(color: Color(0xffFFFFFF))),
-          centerTitle: true,
-          backgroundColor: const Color(0xff000000),
-        ),
-        body: Center(
-            child: StaggeredGridView.countBuilder(
+      backgroundColor: const Color(0xffFFFF00),
+      appBar: AppBar(
+        title:
+            const Text("Modules", style: TextStyle(color: Color(0xffFFFFFF))),
+        centerTitle: true,
+        backgroundColor: const Color(0xff000000),
+      ),
+      body: Center(
+        child: StaggeredGridView.countBuilder(
           crossAxisCount: 4,
           itemCount: 8,
           itemBuilder: (BuildContext context, int index) => GestureDetector(
@@ -25,8 +46,8 @@ class learn extends StatelessWidget {
               Navigator.push<void>(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (BuildContext context) =>
-                        learnmodule(content: " something \n new \n siahdaoi"),
+                    builder: (BuildContext context) => const learnmodule(
+                        content: " something \n new \n siahdaoi"),
                   ));
             },
             child: Container(
@@ -49,12 +70,14 @@ class learn extends StatelessWidget {
           mainAxisSpacing: 10.0,
           crossAxisSpacing: 10.0,
           padding: const EdgeInsets.only(left: 10, top: 70, right: 10),
-        )),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: Colors.black,
-          tooltip: 'Next',
-          child: const Icon(Icons.cancel_outlined),
-        )); // This trailing comma makes auto-formatting nicer for build methods.
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.black,
+        tooltip: 'Next',
+        child: const Icon(Icons.cancel_outlined),
+      ),
+    ); // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
