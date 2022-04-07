@@ -67,7 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           textStyleWidget("HI!"),
           typer(
-              'Our Job is to get to know you at first, so can you fill these sections please?'),
+              'Our Job is to get to know you at first, so can you fill these sections please?',
+              Colors.black),
           inputbox(
             a: 'Enter name',
             b: 'Name cannot be Empty',
@@ -113,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Navigator.push<void>(
               context,
               MaterialPageRoute<void>(
-                  builder: (BuildContext context) => intro1(
+                  builder: (BuildContext context) => IncomeSourcesPage(
                         newuser: widget.newuser,
                       )));
         },

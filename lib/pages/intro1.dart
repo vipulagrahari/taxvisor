@@ -8,7 +8,7 @@ import 'package:taxvisor/classes/insert.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class IncomeSourcesPage extends StatefulWidget {
-  IncomeSourcesPage({Key? key, required this.newuser}) : super(key: key);
+  const IncomeSourcesPage({Key? key, required this.newuser}) : super(key: key);
   final User newuser;
 
   @override
