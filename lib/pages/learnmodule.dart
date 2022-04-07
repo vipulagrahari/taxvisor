@@ -21,21 +21,24 @@ class learnmodule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xffFFFF00),
-        appBar: AppBar(
-          title: const Text(" ", style: TextStyle(color: Color(0xffFFFFFF))),
-          centerTitle: true,
-          backgroundColor: const Color(0xff000000),
-        ),
-        body: RichText(
-            text: TextSpan(
+      backgroundColor: const Color(0xffFFFF00),
+      appBar: AppBar(
+        title: const Text(" ", style: TextStyle(color: Color(0xffFFFFFF))),
+        centerTitle: true,
+        backgroundColor: const Color(0xff000000),
+      ),
+      body: RichText(
+        text: TextSpan(
           text: content,
           style: GoogleFonts.quicksand(
-              textStyle: const TextStyle(
-            fontSize: 10,
-            color: Colors.black,
-          )),
-        )));
+            textStyle: const TextStyle(
+              fontSize: 10,
+              color: Colors.black,
+            ),
+          ),
+        ),
+      ),
+    );
   }
   // YoutubePlayer(
   //     controller: _controller,
