@@ -8,7 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // final newuser = User();
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         home: DashboardPage()
-        //  MyHomePage(title: 'Welcome!', newuser: User()),
+        
         );
   }
 }

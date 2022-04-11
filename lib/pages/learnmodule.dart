@@ -2,48 +2,79 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class learnmodule extends StatelessWidget {
-  final String content;
-  // static String videoID = 'dFKhWe2bBkM';
-
-  // YouTube Video Full URL : https://www.youtube.com/watch?v=dFKhWe2bBkM&feature=emb_title&ab_channel=BBKiVines
-
-  // final YoutubePlayerController _controller = YoutubePlayerController(
-  //   initialVideoId: videoID,
-  //   flags: const YoutubePlayerFlags(
-  //     autoPlay: false,
-  //     mute: false,
-  //   ),
-  // );
-
-  const learnmodule({Key? key, required this.content}) : super(key: key);
+class LearnModule extends StatelessWidget {
+  late String youtubeID;
+  late String title;
+  late String content;
+  LearnModule(
+      {Key? key,
+      required this.title,
+      required this.youtubeID,
+      required this.content})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    String? myId = YoutubePlayer.convertUrlToId(youtubeID);
+    final YoutubePlayerController _controller = YoutubePlayerController(
+      initialVideoId: myId as String,
+      flags: const YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+      ),
+    );
     return Scaffold(
-      backgroundColor: const Color(0xffFFFF00),
       appBar: AppBar(
-        title: const Text(" ", style: TextStyle(color: Color(0xffFFFFFF))),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.bold,
+            color: Color(0xffFFFFFF),
+          ),
+        ),
         centerTitle: true,
         backgroundColor: const Color(0xff000000),
       ),
-      body: RichText(
-        text: TextSpan(
-          text: content,
-          style: GoogleFonts.quicksand(
-            textStyle: const TextStyle(
-              fontSize: 10,
-              color: Colors.black,
+      body: Container(
+        height: height,
+        width: width,
+        color: Colors.white70,
+        // decoration: const BoxDecoration(
+        //   gradient: LinearGradient(
+        //     colors: [Color(0xff8e9eab), Color(0xffeef2f3)],
+        //   ),
+        // ),
+        child: Column(
+          // height: height / 3,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                elevation: 10,
+                child: YoutubePlayer(
+                  controller: _controller,
+                  liveUIColor: Colors.red,
+                ),
+              ),
             ),
-          ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    content,
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(fontSize: 23, fontFamily: "Poppins"),
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
-  }
-  // YoutubePlayer(
-  //     controller: _controller,
-  //     liveUIColor: Colors.amber,
-  //     showVideoProgressIndicator: true,
-  //   ),
-  // ); // This trailing comma makes auto-formatting nicer for build methods.
+  } // This trailing comma makes auto-formatting nicer for build methods.
 }
