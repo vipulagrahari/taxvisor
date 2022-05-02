@@ -43,12 +43,19 @@ class _ResourcePageState extends State<ResourcePage> {
         height: height,
         width: width,
         decoration: const BoxDecoration(
-            gradient:
-                LinearGradient(colors: [Color(0xff8e9eab), Color(0xffeef2f3)])),
+          gradient: LinearGradient(
+            begin: Alignment.bottomLeft,
+            colors: [
+              Color(0xff5f72be),
+              Color(0xff9921e8),
+              // Color(0xffb621fe),
+            ],
+          ),
+        ),
         child: Center(
           child: StaggeredGridView.countBuilder(
             crossAxisCount: 4,
-            itemCount: 12,
+            itemCount: _dataItems.length,
             itemBuilder: (BuildContext context, int index) => GestureDetector(
               onTap: () {
                 Navigator.push<void>(
@@ -70,11 +77,21 @@ class _ResourcePageState extends State<ResourcePage> {
                 ),
                 // color: Colors.black,
                 child: Center(
-                  child: CircleAvatar(
-                    backgroundColor: Colors.black,
-                    child: Text('${index + 1}',
-                        style: const TextStyle(color: Colors.white)),
-                  ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.black,
+                          child: Text('${index + 1}',
+                              style: const TextStyle(color: Colors.white)),
+                        ),
+                        Text(
+                          " ${_dataItems[index][0]}",
+                          style: const TextStyle(color: Colors.black),
+                          overflow: TextOverflow.clip,
+                        ),
+                      ]),
                 ),
               ),
             ),

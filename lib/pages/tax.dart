@@ -23,7 +23,6 @@ class _taxstate extends State<tax> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: const Color(0xffFFFF00),
       // appBar: AppBar(
       //   title: const Text(" Go bac ", style: TextStyle(color: Color(0xffFFFFFF))),
       //   centerTitle: true,

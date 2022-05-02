@@ -14,20 +14,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          // This is the theme of the application.
+      debugShowCheckedModeBanner: false,
+      title: 'Taxvisor',
+      theme: ThemeData(
+        // This is the theme of the application.
 
-          primarySwatch: Colors.indigo,
-          fontFamily: "Poppins",
-          appBarTheme: const AppBarTheme(
-            color: Color(0xff94c997),
-            titleTextStyle: TextStyle(color: Colors.black),
-          ),
+        primarySwatch: Colors.indigo,
+        fontFamily: "Poppins",
+        appBarTheme: const AppBarTheme(
+          color: Color(0xff94c997),
+          titleTextStyle: TextStyle(color: Colors.black),
         ),
-        home: DashboardPage()
-        
-        );
+      ),
+      home: DashboardPage(),
+    );
   }
 }

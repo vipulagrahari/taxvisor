@@ -88,7 +88,7 @@ class _IncomeSourcesPagestate extends State<IncomeSourcesPage> {
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   filled: true,
-                  labelText: "House Rent Allowance",
+                  labelText: "Agricultural Income.",
                   fillColor: Colors.white.withAlpha(100),
                   prefixIcon: const Icon(Icons.person),
                   border: OutlineInputBorder(
