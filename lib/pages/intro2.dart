@@ -6,143 +6,246 @@ import 'package:taxvisor/widgets/inputbox.dart';
 import 'package:taxvisor/widgets/typer.dart';
 import 'package:taxvisor/widgets/rt.dart';
 import 'package:taxvisor/classes/insert.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-// import 'package:getwidget/getwidget.dart';
-
-class intro2 extends StatefulWidget {
-  final User newuser;
-  const intro2({Key? key, required this.newuser}) : super(key: key);
-
+class ExpensesPage extends StatefulWidget {
+  ExpensesPage({Key? key, required this.newuser}) : super(key: key);
+  User newuser;
   @override
-  State<intro2> createState() => _intro2state();
+  State<ExpensesPage> createState() => _expensesPagestate();
 }
 
-class _intro2state extends State<intro2> {
-  int ELSS = 0;
+class _expensesPagestate extends State<ExpensesPage> {
   final ELSSController = TextEditingController();
-  int PPF = 0;
+
   final PPFController = TextEditingController();
-  int lifeinsurance = 0;
   final lifeinsuranceController = TextEditingController();
-  int medicalInsurance = 0;
+
   final medicalInsuranceController = TextEditingController();
-  int nationalPensionScheme = 0;
+
   final nationalPensionSchemeController = TextEditingController();
-  int totalDonations = 0;
+
   final totalDonationsController = TextEditingController();
-
-  ELSScallback(value) {
-    ELSS = value;
-  }
-
-  PPFcallback(value) {
-    PPF = value;
-  }
-
-  lifeinsurancecallback(value) {
-    lifeinsurance = value;
-  }
-
-  medicalInsurancecallback(value) {
-    medicalInsurance = value;
-  }
-
-  nationalPensionSchemecallback(value) {
-    nationalPensionScheme = value;
-  }
-
-  totalDonationcallback(value) {
-    totalDonations = value;
-  }
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: const Color(0xffFFFF00),
-      appBar: AppBar(
-        title: const Text(" ", style: TextStyle(color: Color(0xffFFFFFF))),
-        centerTitle: true,
-        backgroundColor: const Color(0xff000000),
-      ),
-      body: ListView(
-        children: [
-          rt("A few more things :)"),
-          typer('Your monthly expenses?'),
-          inputbox(
-            a: 'ELSS Mutual Fund',
-            b: 'Cannot be Empty, Use 0',
-            userCallback: ELSScallback,
-            keyboardType: TextInputType.number,
-            returnnum: true,
-            myController: ELSSController,
+      body: Container(
+        height: height,
+        width: width,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xff5f72be),
+              Color(0xff9921e8),
+            ],
           ),
-          inputbox(
-            a: 'Public Provident Fund',
-            b: 'Cannot be Empty, Use 0',
-            userCallback: PPFcallback,
-            keyboardType: TextInputType.number,
-            returnnum: true,
-            myController: PPFController,
-          ),
-          inputbox(
-            a: 'Life Insurance',
-            b: 'Cannot be Empty, Use 0',
-            userCallback: lifeinsurancecallback,
-            keyboardType: TextInputType.number,
-            returnnum: true,
-            myController: lifeinsuranceController,
-          ),
-          inputbox(
-            a: 'Medical Insurance',
-            b: 'Cannot be Empty, Use 0',
-            userCallback: medicalInsurancecallback,
-            keyboardType: TextInputType.number,
-            returnnum: true,
-            myController: medicalInsuranceController,
-          ),
-          inputbox(
-              a: 'National Pension Scheme',
-              b: 'Cannot be Empty, Use 0',
-              userCallback: nationalPensionSchemecallback,
-              keyboardType: TextInputType.number,
-              returnnum: true,
-              myController: nationalPensionSchemeController),
-          inputbox(
-            a: 'Total Donations',
-            b: 'Cannot be Empty, Use 0',
-            userCallback: totalDonationcallback,
-            keyboardType: TextInputType.number,
-            returnnum: true,
-            myController: totalDonationsController,
-          ),
-          // inputbox(a: 'Home Loan EMIs', b: 'Cannot be Empty, Use 0')
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                widget.newuser.SetELSS = ELSS;
-                widget.newuser.SetPPF = PPF;
-                widget.newuser.SetLifeInsurance = lifeinsurance;
-                widget.newuser.SetMedicalInsurance = medicalInsurance;
-                widget.newuser.SetNationalPensionScheme = nationalPensionScheme;
-                widget.newuser.SetTotalDonations = totalDonations;
-                // widget.newuser.SetCapitalGains = cg;
-              });
-            },
-            child: const Text("save"),
-          ),
-        ],
+        ),
+        child: ListView(
+          children: [
+            headerRichtext("A few more things :)"),
+            typer('Your monthly expenses or investments?', Colors.black),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextFormField(
+                autofocus: false,
+                controller: ELSSController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  filled: true,
+                  labelText: "ELSS Mutual Fund",
+                  fillColor: Colors.white.withAlpha(100),
+                  prefixIcon: const Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                ),
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Enter a valid number";
+                  } else {
+                    return null;
+                  }
+                },
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextFormField(
+                autofocus: false,
+                controller: PPFController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  filled: true,
+                  labelText: "Public Provident Fund",
+                  fillColor: Colors.white.withAlpha(100),
+                  prefixIcon: const Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                ),
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Enter a valid number";
+                  } else {
+                    return null;
+                  }
+                },
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextFormField(
+                autofocus: false,
+                controller: lifeinsuranceController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  filled: true,
+                  labelText: "Life Insurance",
+                  fillColor: Colors.white.withAlpha(100),
+                  prefixIcon: const Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                ),
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Enter a valid number";
+                  } else {
+                    return null;
+                  }
+                },
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextFormField(
+                autofocus: false,
+                controller: medicalInsuranceController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  filled: true,
+                  labelText: "Medical Insurance",
+                  fillColor: Colors.white.withAlpha(100),
+                  prefixIcon: const Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                ),
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Enter a valid number";
+                  } else {
+                    return null;
+                  }
+                },
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextFormField(
+                autofocus: false,
+                controller: nationalPensionSchemeController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  filled: true,
+                  labelText: "National Pension Scheme",
+                  fillColor: Colors.white.withAlpha(100),
+                  prefixIcon: const Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                ),
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Enter a valid number";
+                  } else {
+                    return null;
+                  }
+                },
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextFormField(
+                autofocus: false,
+                controller: totalDonationsController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  filled: true,
+                  labelText: "Total Donations",
+                  fillColor: Colors.white.withAlpha(100),
+                  prefixIcon: const Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                ),
+                validator: (val) {
+                  if (val!.isEmpty) {
+                    return "Enter a valid number";
+                  } else {
+                    return null;
+                  }
+                },
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            widget.newuser.SetELSS = ELSS;
-            widget.newuser.SetPPF = PPF;
-            widget.newuser.SetLifeInsurance = lifeinsurance;
-            widget.newuser.SetMedicalInsurance = medicalInsurance;
-            widget.newuser.SetNationalPensionScheme = nationalPensionScheme;
-            widget.newuser.SetTotalDonations = totalDonations;
-            // widget.newuser.SetCapitalGains = cg;
-          });
+          widget.newuser.SetELSS =
+              ELSSController.text.isEmpty ? 0 : int.parse(ELSSController.text);
+          widget.newuser.SetPPF =
+              PPFController.text.isEmpty ? 0 : int.parse(PPFController.text);
+          widget.newuser.SetLifeInsurance = lifeinsuranceController.text.isEmpty
+              ? 0
+              : int.parse(lifeinsuranceController.text);
+          widget.newuser.SetMedicalInsurance =
+              medicalInsuranceController.text.isEmpty
+                  ? 0
+                  : int.parse(medicalInsuranceController.text);
+          widget.newuser.SetNationalPensionScheme =
+              nationalPensionSchemeController.text.isEmpty
+                  ? 0
+                  : int.parse(nationalPensionSchemeController.text);
+          widget.newuser.SetTotalDonations =
+              totalDonationsController.text.isEmpty
+                  ? 0
+                  : int.parse(totalDonationsController.text);
 
           Navigator.push<void>(
               context,
